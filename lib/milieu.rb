@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "milieu/version"
+require_relative "milieu/schema"
 require_relative "milieu/cli"
 
 module Milieu

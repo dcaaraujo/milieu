@@ -9,4 +9,10 @@ if Time.now.month == 6
 end
 
 class MilieuTest < Minitest::Test
+  private
+
+  def create_milieu_folder(tmp_dir)
+    path = File.join(tmp_dir, ".milieu")
+    Dir.mkdir(path)
+  end
 end

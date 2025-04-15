@@ -28,6 +28,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "thor"
+  spec.add_development_dependency "irb"
+  spec.add_development_dependency "debug"
+  spec.add_development_dependency "rake", "~> 13.0"
+  spec.add_development_dependency "minitest", "~> 5.16"
+  spec.add_development_dependency "standard", "~> 1.3"
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
