@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "milieu/base"
+require "zeitwerk"
+
+loader = Zeitwerk::Loader.for_gem
+loader.setup
+loader.inflector.inflect("cli" => "CLI")
 
 module Milieu
 end

@@ -2,38 +2,32 @@
 
 module Milieu
   class Schema
-    attr_reader :env_variables, :version
+    attr_accessor :env_variables
 
-    def initialize(version:)
-      @version = version
-      @env_variables = {}
-    end
-
-    def self.create(version:, &block)
-      new(version:).tap do |schema|
+    def self.create(&block)
+      new.tap do |schema|
         schema.instance_eval(&block)
       end
     end
 
-    def define_env_variable(key, value)
-      @env_variables[key] = value
+    def initialize
+      @env_variables = {}
+    end
+
+    def add(key, value)
+      @env_variables[normalize_key(key)] = value
       self
     end
 
-    def include?(key)
-      @env_variables.include?(key)
+    def remove(key)
+      @env_variables.delete(normalize_key(key))
+      self
     end
 
-    def map
-      @env_variables.sort.map do |key, raw_value|
-        value = case raw_value
-        when String
-          %("#{raw_value}")
-        else
-          raw_value
-        end
-        yield key, value
-      end
+    private
+
+    def normalize_key(key)
+      key.to_s.upcase
     end
   end
 end
